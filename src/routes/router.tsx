@@ -40,6 +40,30 @@ export const router = createBrowserRouter([
               },
             ],
           },
+          {
+            path: "info-accident",
+            Component: OverView,
+          },
+          {
+            path: "accept-list",
+            Component: OverView,
+          },
+          {
+            path: "measure",
+            Component: OverView,
+          },
+          {
+            path: "reports",
+            Component: OverView,
+          },
+          {
+            path: "e-map",
+            Component: OverView,
+          },
+          {
+            path: "export",
+            Component: OverView,
+          },
         ],
       },
     ],

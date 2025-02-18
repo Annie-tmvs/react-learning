@@ -66,66 +66,25 @@ export const NAVIGATION: Navigation = [
         title: "detail",
         icon: <DescriptionIcon fontSize="small" />,
       },
-      {
-        segment: "traffic",
-        title: "Traffic",
-        icon: <DescriptionIcon fontSize="small" />,
-      },
     ],
   },
   {
     segment: "info-accident",
     title: "ข้อมูลอุบัติเหตุ",
     icon: <LocalCarWashIcon fontSize="small" />,
-
-    children: [
-      {
-        segment: "sales",
-        title: "Sales",
-        icon: <DescriptionIcon fontSize="small" />,
-      },
-      {
-        segment: "traffic",
-        title: "Traffic",
-        icon: <DescriptionIcon fontSize="small" />,
-      },
-    ],
+    // children: [],
   },
   {
     segment: "accept-list",
     title: "รายการรออนุมัติ",
     icon: <PendingActionsIcon fontSize="small" />,
-
-    children: [
-      {
-        segment: "sales",
-        title: "Sales",
-        icon: <DescriptionIcon fontSize="small" />,
-      },
-      {
-        segment: "traffic",
-        title: "Traffic",
-        icon: <DescriptionIcon fontSize="small" />,
-      },
-    ],
+    // children: [],
   },
   {
-    segment: "reports",
+    segment: "measure",
     title: "มาตรการ 365",
     icon: <LocalPoliceIcon fontSize="small" />,
-
-    children: [
-      {
-        segment: "sales",
-        title: "Sales",
-        icon: <DescriptionIcon fontSize="small" />,
-      },
-      {
-        segment: "traffic",
-        title: "Traffic",
-        icon: <DescriptionIcon fontSize="small" />,
-      },
-    ],
+    // children: [],
   },
   {
     segment: "reports",

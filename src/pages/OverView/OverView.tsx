@@ -4,8 +4,11 @@ import DatePickerCutom from "../../components/common/DatePicker/DatePicker";
 import BasicSelect from "../../components/common/Select/Select";
 import TableCustom from "../../components/common/Table/Table";
 import { Form } from "react-router-dom";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import DescriptionIcon from "@mui/icons-material/Description";
+import CreateIcon from "@mui/icons-material/Create";
+import DeleteIcon from "@mui/icons-material/Delete";
 const OPTION1 = [
   { id: "1", name: "ตรัง" },
   { id: "2", name: "ตาก" },
@@ -15,26 +18,49 @@ const OPTION2 = [
   { id: "2", name: "สำเร็จ" },
 ];
 
-const HEADER = ["id", "name", "detail"];
-const DATA = [
-  { name: "test", detail: "test-test", id: "1" },
-  { name: "test", detail: "test-test", id: "2" },
-  { name: "test", detail: "test-test", id: "3" },
-  { name: "test", detail: "test-test", id: "4" },
+const HEADER = [
+  "id",
+  "city",
+  "point1",
+  "status1",
+  "status2",
+  "status3",
+  "point4",
+  "status4",
 ];
 
 const OverView = () => {
   const [formData, setFormData] = useState("");
   const [amphur, setAmphur] = useState("");
+  const [data, setData] = useState([]);
 
   const handleChange = (e: any) => {
-    console.warn(e.target);
     setFormData(e.target.value);
   };
 
   const onSubmit = () => {
     setAmphur(formData);
   };
+
+  const OpenDetail = (res: any) => {
+    // alert("test" + res);
+    console.log(res)
+  };
+  //
+  const endpoint = "https://6789fd66dd587da7ac2853ce.mockapi.io/api/overview";
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(endpoint);
+      setData(res.data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    setFormData(OPTION1[0].name);
+    fetchData();
+  }, []);
 
   return (
     <Container>
@@ -54,7 +80,11 @@ const OverView = () => {
               />
             </Grid>
             <Grid size={4}>
-              <BasicSelect label="สถานะ" defaultValue="1" option={OPTION2} />
+              <BasicSelect
+                label="สถานะ"
+                option={OPTION2}
+                defaultValue={OPTION2[0].name}
+              />
             </Grid>
             <Grid container size={12} spacing={3} justifyContent={"flex-end"}>
               <Grid size={2}>
@@ -90,11 +120,30 @@ const OverView = () => {
           ข้อมูลสถานะระดับอำเภอส่งถึง <strong>{amphur}</strong>
         </span>
         <TableCustom
-          headerbackgroud="blue"
+        callback={(res) => {console.log(res)
+
+          debugger
+        }}
+          headerbackgroud="#1f5cc6"
           headerheight="50px"
-          headercolor="yellow"
+          headercolor="white"
           theader={HEADER}
-          tbody={DATA}
+          tbody={data}
+          textalign="center"
+          actioncell="true"
+          childern={
+            <div>
+              <Button onClick={OpenDetail}>
+                <DescriptionIcon fontSize="small" color="primary" />
+              </Button>
+              <Button onClick={OpenDetail}>
+                <CreateIcon fontSize="small" color="warning" />
+              </Button>
+              <Button onClick={OpenDetail}>
+                <DeleteIcon fontSize="small" color="error" />
+              </Button>
+            </div>
+          }
         />
       </Box>
     </Container>

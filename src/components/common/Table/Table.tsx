@@ -8,7 +8,7 @@ import { TableType } from "./Table.type";
 import { StyledTableCell, StyledTableRow } from "./Table.cutom";
 
 const TableCustom = (props: TableType) => {
-  const { textAlign, theader, tbody } = props;
+  const { textalign, theader, tbody, actioncell, childern,callback } = props;
 
   return (
     <TableContainer component={Paper} sx={{ margin: "32px 0" }}>
@@ -16,20 +16,30 @@ const TableCustom = (props: TableType) => {
         <TableHead>
           <TableRow>
             {theader?.map((col: string, i: number) => (
-              <StyledTableCell key={i} align={textAlign} {...props}>
+              <StyledTableCell key={i} align={textalign} {...props}>
                 {col}
               </StyledTableCell>
-            ))}
+            ))}{" "}
+            {actioncell && (
+              <StyledTableCell {...props} align={textalign}>
+                action
+              </StyledTableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
           {tbody?.map((row, rowIndex) => (
             <StyledTableRow key={rowIndex}>
               {theader?.map((col, colIndex) => (
-                <StyledTableCell {...props} key={colIndex} align={textAlign}>
+                <StyledTableCell {...props} key={colIndex} align={textalign}>
                   {row[col]}
                 </StyledTableCell>
               ))}
+              {actioncell && (
+                <StyledTableCell {...props} align={textalign} onClick={() => {callback(row)}}>
+                  {childern}
+                </StyledTableCell>
+              )}
             </StyledTableRow>
           ))}
         </TableBody>

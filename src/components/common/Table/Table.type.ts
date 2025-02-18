@@ -1,8 +1,13 @@
+import { ReactNode } from "react";
+
 export interface TableType {
   headerheight?: string;
   headerbackgroud?: string;
   headercolor?: string;
-  textAlign?: "left" | "center" | "right";
+  textalign?: "left" | "center" | "right";
   theader: string[];
   tbody: { [key: string]: any }[];
+  actioncell?: string;
+  childern?: ReactNode;
+  callback: (data: any) => void
 }
